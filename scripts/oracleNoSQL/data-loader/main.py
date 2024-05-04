@@ -57,7 +57,7 @@ def chunks(iterable, size):
 
 if __name__ == '__main__':
     # MongoDB's connection details
-    mongo_db_uri = 'mongodb+srv://sata:AaLkgmrG4SY66LVB@cluster0.ktd1xeb.mongodb.net/'
+    mongo_db_uri = 'mongodb_uri'
     mongo_db_name = 'madaExplore'
     collections = ['users']
 
