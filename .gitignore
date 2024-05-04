@@ -1,6 +1,6 @@
 .idea
 .vscode
-datasource
+datasource/
 
 scripts/oracleNoSQL/data-loader/venv
 scripts/oracleNoSQL/data-loader/.idea
