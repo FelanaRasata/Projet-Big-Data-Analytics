@@ -1,25 +1,33 @@
-#!/bin/bash
+# Starting Oracle NoSql
+nohup java -Xmx64m -Xms64m -jar $KVHOME/lib/kvstore.jar kvlite -secure-config disable -root $KVROOT &
 
-# Script Name: data-loader.sh
-# Description: A script to load data from MongoDB into HiveSQL
-# Requirements: Python (>=3.9), pip
+# Starting Oracle NoSql
+java -jar $KVHOME/lib/kvstore.jar runadmin -port 5000 -host localhost
 
-# Go to the project directory
-cd data-loader
+kv -> connect store -name kvstore
 
-# Check if virtual environment folder exists, if not, create one
-if [ ! -d "venv" ]; then
-    echo "Creating virtual environment..."
-    python -m venv venv
-fi
+# =====================================================================================================
 
-# Activate the virtual environment based on the operating system
-source venv/bin/activate
+# *INSTRUCTION: Open a new CMD with vagrant ssh
 
-# Install dependencies
-echo "Installing dependencies..."
-pip install -r requirements.txt
+# *INSTRUCTION: 
+# Put Marketing.csv ,Clients_4.csv, Clients_13.csv in "/vagrant/tpt/data"
+# ImportCSVtoNOSQL.java in "/vagrant/tpt/java"
 
-# Launch the Python script
-echo "Launching the script..."
-python main.py
+# Run this commande :
+export TPTHOME=/vagrant/tpt/java
+
+# Compile ImportCSVtoNOSQL.java
+javac -g -cp $KVHOME/lib/kvclient.jar:$TPTHOME $TPTHOME/ImportCSVtoNOSQL.java
+
+# Import the 3 csv in oracle noSql
+
+# Marketing.csv, with the type "marketing"
+java -Xmx256m -Xms256m -cp $KVHOME/lib/kvclient.jar:$MYTPHOME ImportCSVtoNOSQL /vagrant/tpt/data/Marketing.csv marketing
+
+# Clients_4.csv, with the type "client"
+java -Xmx256m -Xms256m -cp $KVHOME/lib/kvclient.jar:$MYTPHOME ImportCSVtoNOSQL /vagrant/tpt/data/Clients_4.csv client
+
+# Clients_13.csv, with the type "client"
+java -Xmx256m -Xms256m -cp $KVHOME/lib/kvclient.jar:$MYTPHOME ImportCSVtoNOSQL /vagrant/tpt/data/Clients_13.csv client
+

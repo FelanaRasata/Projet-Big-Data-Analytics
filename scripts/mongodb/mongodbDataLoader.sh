@@ -1,23 +1,19 @@
-// Script Name: mongo-import.js
-// Description: A script to import CSV data into MongoDB
-// Requirements: MongoDB shell
+# Description: A script to import CSV data into MongoDB
 
-// *INSTRUCTION: Replace $DS_PATH with the actual file paths
-var DS_PATH = "/path/to/csv/files";
+# CSV : Immatriculations.csv, Catalogue.csv
+# Path : /vagrant/tpt/data
 
-// Import CSV data into MongoDB collections
-print("Importing CSV data into MongoDB...");
+# *INSTRUCTION: Replace $DS_PATH with the actual file paths
+DS_PATH="/vagrant/tpt/data"
 
-// Replace $DS_PATH with the actual file paths
-var immatriculations_file = "$DS_PATH/Immatriculations.csv";
-var catalogues_file = "$DS_PATH/Catalogue.csv";
+# Import CSV data into MongoDB collections
 
-// Import CSV data into 'immatriculations' collection
-print("Importing data from Immatriculations.csv...");
-mongoimport --db sourceCSV --collection immatriculations --type csv --file immatriculations_file --headerline;
+immatriculations_file="$DS_PATH/Immatriculations.csv"
+catalogues_file="$DS_PATH/Catalogue.csv"
 
-// Import CSV data into 'catalogues' collection
-print("Importing data from Catalogue.csv...");
-mongoimport --db sourceCSV --collection catalogues --type csv --file catalogues_file --headerline;
+# Importing data from Immatriculations.csv into 'immatriculations' collection
+mongoimport --db sourceCSV --collection immatriculations --type csv --file $immatriculations_file --headerline;
 
-print("CSV data imported successfully.");
+# Importing data from Catalogue.csv into 'catalogues' collection
+mongoimport --db sourceCSV --collection catalogues --type csv --file $catalogues_file --headerline;
+
