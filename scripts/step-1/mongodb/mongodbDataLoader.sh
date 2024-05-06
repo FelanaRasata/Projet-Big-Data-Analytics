@@ -16,4 +16,3 @@ mongoimport --db sourceCSV --collection immatriculations --type csv --file $imma
 
 # Importing data from Catalogue.csv into 'catalogues' collection
 mongoimport --db sourceCSV --collection catalogues --type csv --file $catalogues_file --headerline;
-
