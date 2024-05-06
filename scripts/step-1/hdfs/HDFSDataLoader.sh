@@ -8,8 +8,6 @@ start-dfs.sh
 # Put the file "CO2.csv" in the following path
 DS_PATH="/vagrant/tpt/data/CO2.csv"
 
-# Upload file to Hadoop HDFS
-echo "Uploading file to Hadoop HDFS..."
 
 # Create folder to put the file
 hadoop fs -mkdir -p /tpt/data
