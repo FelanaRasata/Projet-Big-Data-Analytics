@@ -1,6 +1,3 @@
-
-
-
 -- HDFS CO2
 CREATE EXTERNAL TABLE co2_hive_ext (
     id int,

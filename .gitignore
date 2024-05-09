@@ -2,5 +2,5 @@
 .vscode
 datasource/
 
-scripts/step-1/oracleNoSQL/data-loader/venv
-scripts/step-1/oracleNoSQL/data-loader/.idea
+**/venv
+**/.idea
