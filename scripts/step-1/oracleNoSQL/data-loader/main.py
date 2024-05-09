@@ -4,17 +4,19 @@ from itertools import islice, chain
 
 
 def bulk_insert_data(hive_host, hive_port, hive_user, table_name, documents, batch_size=1000):
-    # Establish connection to Hive
-    conn = hive.Connection(host=hive_host, port=hive_port, username=hive_user)
-    cur = conn.cursor()
-
     # Convert documents to a list of SQL insert queries
     insert_queries = [convert_mongodb_to_sql_insert(doc, table_name) for doc in documents]
 
-    # Batch insert data into Hive table
-    for batch in chunks(insert_queries, batch_size):
-        query = "\n".join(batch)
-        cur.execute(query)
+    print(insert_queries)
+
+    # # Establish connection to Hive
+    # conn = hive.Connection(host=hive_host, port=hive_port, username=hive_user)
+    # cur = conn.cursor()
+    #
+    # # Batch insert data into Hive table
+    # for batch in chunks(insert_queries, batch_size):
+    #     query = "\n".join(batch)
+    #     cur.execute(query)
 
 
 def convert_mongodb_to_sql_insert(mongodb_data, table_name):
@@ -59,7 +61,10 @@ if __name__ == '__main__':
     # MongoDB's connection details
     mongo_db_uri = 'mongodb_uri'
     mongo_db_name = 'madaExplore'
-    collections = ['users']
+    tables = [
+        ('immatriculations', 'immatriculation_hive'),
+        ('catalogues', 'catalogue_hive'),
+    ]
 
     # Hive connection details
     hive_host = 'hive_host_address'
@@ -67,9 +72,9 @@ if __name__ == '__main__':
     hive_user = 'hive_username'
 
     # Process each collection
-    for col in collections:
+    for (col, table) in tables:
         # Fetch documents from MongoDB
         docs = fetch_mongodb_data(mongo_db_uri, mongo_db_name, col)
 
         # Batch insert documents into Hive
-        bulk_insert_data(hive_host, hive_port, hive_user, col, docs)
+        bulk_insert_data(hive_host, hive_port, hive_user, table, docs)

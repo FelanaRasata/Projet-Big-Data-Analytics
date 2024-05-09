@@ -11,7 +11,6 @@ DS_PATH="/vagrant/tpt/data/CO2.csv"
 
 # Create folder to put the file
 hadoop fs -mkdir -p /tpt/data
-
 hadoop fs -put -f $DS_PATH /tpt/data
 
 echo "File uploaded successfully."
