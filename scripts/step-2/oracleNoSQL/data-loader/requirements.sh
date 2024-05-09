@@ -9,3 +9,5 @@ pip install pymongo==3.12.0
 pip install thrift
 pip install thrift-sasl
 pip install PyHive
+
+python3 main.py

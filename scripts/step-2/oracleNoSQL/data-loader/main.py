@@ -2,35 +2,49 @@ import traceback
 from itertools import islice, chain
 
 import pymongo
-from pyhive import hive
 
 
-def bulk_insert_data(hive_host, hive_port, hive_user, hive_password, table_name, documents, batch_size=100):
-    conn = None
+# from pyhive import hive
+#
+#
+# def bulk_insert_data(hive_host, hive_port, hive_user, hive_password, table_name, documents, batch_size=100):
+#     conn = None
+#
+#     try:
+#         # Convert documents to a list of SQL insert queries
+#         insert_queries = [convert_mongodb_to_sql_insert(doc, idx + 1, table_name) for idx, doc in enumerate(documents)]
+#         auth = None
+#
+#         if hive_password is not None:
+#             auth = 'LDAP'
+#
+#         # Establish connection to Hive
+#         conn = hive.Connection(host=hive_host, port=hive_port, auth=auth, username=hive_user, password=hive_password)
+#         cur = conn.cursor()
+#
+#         # Batch insert data into Hive table
+#         for batch in chunk_list(insert_queries, batch_size):
+#             query = "".join(batch)
+#             cur.execute(query)
+#
+#     except:
+#         traceback.print_exc()
+#
+#     finally:
+#         if conn:
+#             conn.close()
 
-    try:
-        # Convert documents to a list of SQL insert queries
-        insert_queries = [convert_mongodb_to_sql_insert(doc, idx + 1, table_name) for idx, doc in enumerate(documents)]
-        auth = None
+def write_queries_in_file(table_name, documents):
+    # Convert documents to a list of SQL insert queries
+    insert_queries = [convert_mongodb_to_sql_insert(doc, idx + 1, table_name) for idx, doc in enumerate(documents)]
 
-        if hive_password is not None:
-            auth = 'LDAP'
+    # Specify the file path
+    file_path = f"{table_name}.txt"
 
-        # Establish connection to Hive
-        conn = hive.Connection(host=hive_host, port=hive_port, auth=auth, username=hive_user, password=hive_password)
-        cur = conn.cursor()
-
-        # Batch insert data into Hive table
-        for batch in chunk_list(insert_queries, batch_size):
-            query = "\n".join(batch)
-            cur.execute(query)
-
-    except:
-        traceback.print_exc()
-
-    finally:
-        if conn:
-            conn.close()
+    # Open the file in write mode ('w')
+    with open(file_path, 'w') as file:
+        # Write the content to the file
+        file.write("\n".join(insert_queries))
 
 
 def convert_mongodb_to_sql_insert(mongodb_data, row_id, table_name):
@@ -94,5 +108,6 @@ if __name__ == '__main__':
         docs = fetch_mongodb_data(mongo_db_uri, mongo_db_name, col)
 
         # Batch insert documents into Hive
-        bulk_insert_data(hive_host=hive_host, hive_port=hive_port, hive_user=hive_user, hive_password=hive_password,
-                         table_name=table, documents=docs)
+        # bulk_insert_data(hive_host=hive_host, hive_port=hive_port, hive_user=hive_user, hive_password=hive_password,
+        #                  table_name=table, documents=docs)
+        write_queries_in_file(table_name=table, documents=docs)
