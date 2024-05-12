@@ -38,26 +38,26 @@ beeline> !connect jdbc:hive2://localhost:10000
 
 - Run `2-hive-table-create-1.sql`.
 
-4. **Run ETL Python**
+4. **Run Python ETL**
 
-- \*INSTRUCTION: Open a new CMD with vagrant ssh
+- Open a new terminal and execute vagrant ssh
 
-- Redirection to the ETL folder
+- Go to the ETL folder
 
 ```bash
 $ cd /vagrant/tpt/python/
 ```
 
-- Run the bash requirements
+- Install needed requirements  for `dataLoader.py`
 
 ```bash
-$ bash requirements.sh
+$ pip install pymongo==3.12.0
 ```
 
 - Run the python program
 
 ```bash
-$ python3 main.py
+$ python3 dataLoader.py
 ```
 
 =======================================================
