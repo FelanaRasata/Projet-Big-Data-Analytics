@@ -7,14 +7,14 @@ A script to create datalake in `Hive`.
 1. **Starting Hive**
 
 ```bash
-$ start-dfs.sh
+start-dfs.sh
 
-$ start-yarn.sh
+start-yarn.sh
 
-$ nohup hive --service metastore > /dev/null &
-$ nohup hiveserver2 > /dev/null &
+nohup hive --service metastore > /dev/null &
+nohup hiveserver2 > /dev/null &
 
-$ beeline
+beeline
 ```
 
 - Connection
@@ -45,19 +45,19 @@ beeline> !connect jdbc:hive2://localhost:10000
 - Go to the ETL folder
 
 ```bash
-$ cd /vagrant/tpt/python/
+cd /vagrant/tpt/python/
 ```
 
-- Install needed requirements  for `dataLoader.py`
+- Install needed requirements for `dataLoader.py`
 
 ```bash
-$ pip install pymongo==3.12.0
+pip install pymongo==3.12.0
 ```
 
 - Run the python program
 
 ```bash
-$ python3 dataLoader.py
+python3 dataLoader.py
 ```
 
 =======================================================
@@ -67,7 +67,7 @@ $ python3 dataLoader.py
 - Open jupyter
 
 ```bash
-$ jupyter lab --ip=0.0.0.0
+jupyter lab --ip=0.0.0.0
 ```
 
 - Upload the file `mapreduce.ipynb` in `/vagrant/tpt/python/` in jupyter
