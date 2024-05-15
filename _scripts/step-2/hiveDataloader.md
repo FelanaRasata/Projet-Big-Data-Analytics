@@ -7,14 +7,14 @@ A script to create datalake in `Hive`.
 1. **Starting Hive**
 
 ```bash
-$ start-dfs.sh
+start-dfs.sh
 
-$ start-yarn.sh
+start-yarn.sh
 
-$ nohup hive --service metastore > /dev/null &
-$ nohup hiveserver2 > /dev/null &
+nohup hive --service metastore > /dev/null &
+nohup hiveserver2 > /dev/null &
 
-$ beeline
+beeline
 ```
 
 - Connection
@@ -38,39 +38,38 @@ beeline> !connect jdbc:hive2://localhost:10000
 
 - Run `2-hive-table-create-1.sql`.
 
-4. **Run ETL Python**
+4. **Run Python ETL**
 
-- \*INSTRUCTION: Open a new CMD with vagrant ssh
+- Open a new terminal and execute vagrant ssh
 
-- Redirection to the ETL folder
+- Go to the ETL folder
 
 ```bash
-$ cd /vagrant/tpt/python/
+cd /vagrant/tpa_groupe_14/python/
 ```
 
-- Run the bash requirements
+- Install needed requirements for `dataLoader.py`
 
 ```bash
-$ bash requirements.sh
+pip install pymongo==3.12.0
 ```
 
 - Run the python program
 
 ```bash
-$ python3 main.py
+python3 dataLoader.py
 ```
 
-=======================================================
 
 5. **MapReduce**
 
 - Open jupyter
 
 ```bash
-$ jupyter lab --ip=0.0.0.0
+jupyter lab --ip=0.0.0.0
 ```
 
-- Upload the file `mapreduce.ipynb` in `/vagrant/tpt/python/` in jupyter
+- Upload the file `mapreduce.ipynb` in `/vagrant/tpa_groupe_14/python/` in jupyter
 
 - Run `mapreduce.ipynb`
 

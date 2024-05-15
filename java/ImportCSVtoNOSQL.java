@@ -215,7 +215,6 @@ public class ImportCSVtoNOSQL {
 
                 for (int i = 0; i < nblisteAttributs; i++) {
 
-                    System.out.println("papa " + i);
                     int u = i + 1;
                     String typeAttibut = listeTupeAttributs.get(u);
                     System.out.println("N° " + u + " " + listeAttributs.get(u));

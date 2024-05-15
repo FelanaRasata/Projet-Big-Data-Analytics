@@ -4,3 +4,4 @@ datasource/
 
 **/venv
 **/.idea
+**/*.hql
