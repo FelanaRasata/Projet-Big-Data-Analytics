@@ -45,7 +45,7 @@ beeline> !connect jdbc:hive2://localhost:10000
 - Go to the ETL folder
 
 ```bash
-cd /vagrant/tpt/python/
+cd /vagrant/tpa_groupe_14/python/
 ```
 
 - Install needed requirements for `dataLoader.py`
@@ -60,7 +60,6 @@ pip install pymongo==3.12.0
 python3 dataLoader.py
 ```
 
-=======================================================
 
 5. **MapReduce**
 
@@ -70,7 +69,7 @@ python3 dataLoader.py
 jupyter lab --ip=0.0.0.0
 ```
 
-- Upload the file `mapreduce.ipynb` in `/vagrant/tpt/python/` in jupyter
+- Upload the file `mapreduce.ipynb` in `/vagrant/tpa_groupe_14/python/` in jupyter
 
 - Run `mapreduce.ipynb`
 

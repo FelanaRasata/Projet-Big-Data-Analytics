@@ -1,6 +1,6 @@
 -- MongoDb
--- Immatriculisation
-CREATE TABLE IF NOT EXISTS immatriculisation_hive (
+-- Immatriculation
+CREATE TABLE IF NOT EXISTS immatriculation_hive (
     id string,
     immatriculation string,
     marque string,
@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS immatriculisation_hive (
     occasion boolean,
     prix int
 )
-COMMENT 'Immatriculisation details' 
+COMMENT 'Immatriculation details' 
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY '\t'
 LINES TERMINATED BY '\n'

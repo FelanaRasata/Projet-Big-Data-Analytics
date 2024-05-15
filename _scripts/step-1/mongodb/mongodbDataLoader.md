@@ -20,6 +20,7 @@ DS_PATH="/vagrant/tpa_groupe_14/data"
 immatriculations_file="$DS_PATH/Immatriculations.csv"
 catalogues_file="$DS_PATH/Catalogue.csv"
 
+# enlver ï dans catalogue
 
 immatriculations_file_new="$DS_PATH/Immatriculations_UTF8.csv"
 catalogues_file_new="$DS_PATH/Catalogue_UTF8.csv"

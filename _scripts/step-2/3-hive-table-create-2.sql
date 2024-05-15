@@ -15,4 +15,4 @@ CREATE EXTERNAL TABLE catalogue_co2_hive_ext (
     coutenergie string
 )
  ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
- STORED AS TEXTFILE LOCATION 'hdfs:/tpt/mapreduce';
+ STORED AS TEXTFILE LOCATION 'hdfs:/tpa_groupe_14/mapreduce';
