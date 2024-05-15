@@ -38,23 +38,45 @@ export TPTHOME=/vagrant/tpt/java
 ```bash
 javac -g -cp $KVHOME/lib/kvclient.jar:$TPTHOME $TPTHOME/ImportCSVtoNOSQL.java
 ```
+```bash
+DS_PATH="/vagrant/tpa_groupe_14/data"
 
+marketing_file="$DS_PATH/Marketing.csv"
+clients_4_file="$DS_PATH/Clients_4.csv"
+clients_13_file="$DS_PATH/Clients_13.csv"
+
+
+
+
+marketing_file_new="$DS_PATH/Marketing_UTF8.csv"
+clients_4_file_new="$DS_PATH/Clients_4_UTF8.csv"
+clients_13_file_new="$DS_PATH/Clients_13_UTF8.csv"
+
+
+
+iconv -f ISO-8859-1 -t UTF-8 $marketing_file -o $marketing_file_new
+
+iconv -f ISO-8859-1 -t UTF-8 $clients_4_file -o $clients_4_file_new
+iconv -f ISO-8859-1 -t UTF-8 $clients_13_file -o $clients_13_file_new
+
+```
 - Import the 3 csv in oracle noSql
 
   - Marketing.csv, with the type "marketing"
 
+
 ```bash
-java -Xmx256m -Xms256m -cp $KVHOME/lib/kvclient.jar:$TPTHOME ImportCSVtoNOSQL /vagrant/tpt/data/Marketing.csv marketing
+java -Xmx256m -Xms256m -cp $KVHOME/lib/kvclient.jar:$TPTHOME ImportCSVtoNOSQL $marketing_file_new marketing
 ```
 
     * Clients_4.csv, with the type "client"
 
 ```bash
-java -Xmx256m -Xms256m -cp $KVHOME/lib/kvclient.jar:$TPTHOME ImportCSVtoNOSQL /vagrant/tpt/data/Clients_4.csv client
+java -Xmx256m -Xms256m -cp $KVHOME/lib/kvclient.jar:$TPTHOME ImportCSVtoNOSQL $clients_4_file_new client
 ```
 
     * Clients_13.csv, with the type "client"
 
 ```bash
-java -Xmx256m -Xms256m -cp $KVHOME/lib/kvclient.jar:$TPTHOME ImportCSVtoNOSQL /vagrant/tpt/data/Clients_13.csv client
+java -Xmx256m -Xms256m -cp $KVHOME/lib/kvclient.jar:$TPTHOME ImportCSVtoNOSQL $clients_13_file_new client
 ```
