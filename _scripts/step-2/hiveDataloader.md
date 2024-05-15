@@ -33,7 +33,7 @@ beeline> !connect jdbc:hive2://localhost:10000
 
 - Create table
 
-  - Table : `immatriculisation_hive` ,`catalogue_hive`
+  - Table : `immatriculation_hive` ,`catalogue_hive`
   - External table from Oracle NoSQL : `clients_hive_ext`, `marketing_hive_ext`
 
 - Run `2-hive-table-create-1.sql`.
