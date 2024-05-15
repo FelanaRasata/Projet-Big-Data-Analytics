@@ -64,7 +64,7 @@ def chunk_list(data, chunk_size):
 def main():
     tables = [
         ('catalogues', 'catalogue_hive'),
-        ('immatriculations', 'immatriculation_hive'),
+        # ('immatriculations', 'immatriculation_hive'),
     ]
 
     for (collection_name, table_name) in tables:
