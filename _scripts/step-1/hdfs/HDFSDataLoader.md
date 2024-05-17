@@ -1,22 +1,22 @@
-# Hadoop HDFS Part
+# Partie de l'Hadoop HDFS
 
 ## Description:
 
-A script to upload files to Hadoop HDFS
+Un script pour télécharger des fichiers csv vers Hadoop HDFS
 
-## Requirements: Hadoop installed and configured
+## Prérequis : Hadoop installé et configuré
 
-1. **Starting Hadoop HDFS**
+1. **Démarrage de Hadoop HDFS**
 
 ```bash
 start-dfs.sh
 ```
 
-2. **Put CO2.csv in Hadoop HDFS**
-   \*INSTRUCTION: Replace $DS_PATH with the actual file path
-   Put the file "CO2.csv" in the following path: `/vagrant/tpa_groupe_14/data`
+2. **Mettre le fichier CO2.csv dans Hadoop HDFS**
 
-- Create a variable that contains the path of "CO2.csv"
+   Mettez le fichier "CO2.csv" dans le chemin suivant: `/vagrant/tpa_groupe_14/data`
+
+- Créez une variable qui contient le chemin du fichier "CO2.csv".
 
 ```bash
 DS_PATH="/vagrant/tpa_groupe_14/data"
@@ -24,16 +24,14 @@ DS_PATH="/vagrant/tpa_groupe_14/data"
 CO2_file="$DS_PATH/CO2.csv"
 ```
 
-- Create folder to put the file in hadoop hdfs
+- Créez un dossier pour y mettre le fichier dans Hadoop HDFS.
 
 ```bash
 hadoop fs -mkdir -p /tpa_groupe_14/data
 ```
 
-- Put the file in Hadoop HDFS
+- Mettez le fichier dans Hadoop HDFS.
 
 ```bash
 hadoop fs -put -f $CO2_file /tpa_groupe_14/data
 ```
-
-hadoop fs -cat /tpa_groupe_14/data/CO2_UTF8.csv

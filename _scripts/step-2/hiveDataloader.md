@@ -1,10 +1,10 @@
-# STEP 2 : HIVE SQL
+# ETAPE 2 : HIVE
 
 ## Description:
 
-A script to create datalake in `Hive`.
+Un script pour créer un Data Lake dans `Hive`.
 
-1. **Starting Hive**
+1. **Démarrage de Hive**
 
 ```bash
 start-dfs.sh
@@ -17,28 +17,24 @@ nohup hiveserver2 > /dev/null &
 beeline
 ```
 
-- Connection
+- Connexion à Hive
 
 ```bash
 beeline> !connect jdbc:hive2://localhost:10000
 ```
 
-\*Don't enter username and password, double click enter.
+\*Ne saisissez pas de nom d'utilisateur ni de mot de passe, appuyez simplement deux fois sur Entrée.
 
-2. **Drop table**
+2. **Hive table - partie 1**
 
-- Run `1-hive-table-drop.sql` if these tables exist.
+- Créez les tables suivantes :
 
-3. **Hive table 1**
+  - Table locale : `immatriculation_hive`, `catalogue_hive`
+  - Table externe depuis Oracle NoSQL : `clients_hive_ext`, `marketing_hive_ext`
 
-- Create table
+- Exécutez le code dans `sql/hive-table-create-1.sql`.
 
-  - Table : `immatriculisation_hive` ,`catalogue_hive`
-  - External table from Oracle NoSQL : `clients_hive_ext`, `marketing_hive_ext`
-
-- Run `2-hive-table-create-1.sql`.
-
-4. **Run Python ETL**
+4. **Exécuter le processus ETL Python.**
 
 - Open a new terminal and execute vagrant ssh
 
@@ -60,23 +56,20 @@ pip install pymongo==3.12.0
 python3 dataLoader.py
 ```
 
+5. **MapReduce Spark**
 
-5. **MapReduce**
-
-- Open jupyter
+- Ouvrir Jupyter
 
 ```bash
 jupyter lab --ip=0.0.0.0
 ```
 
-- Upload the file `mapreduce.ipynb` in `/vagrant/tpa_groupe_14/python/` in jupyter
+- Téléversez le fichier `mapreduce.ipynb` de `/vagrant/tpa_groupe_14/python/` dans Jupyter.
 
-- Run `mapreduce.ipynb`
+- Exécutez chaque ligne de `mapreduce.ipynb`.
 
-6. **Hive table 2**
+6. **Hive table - partie 2**
 
-- Create table
+- Créez la table `catalogue_co2_hive_ext`, une table externe depuis HDFS, résultat du processus MapReduce.
 
-  - External table from HDFS : `co2_hive_ext`
-
-- Run `3-hive-table-create-2.sql`.
+- Exécutez le code dans `sql/hive-table-create-2.sql`.
