@@ -1,7 +1,7 @@
--- MongoDb
+-- HDFS
 -- Immatriculation
-CREATE TABLE IF NOT EXISTS immatriculation_hive (
-    id string,
+CREATE TABLE IF NOT EXISTS immatriculation_hive_ext (
+    objectid string,
     immatriculation string,
     marque string,
     nom string,
@@ -10,15 +10,13 @@ CREATE TABLE IF NOT EXISTS immatriculation_hive (
     nbplaces int,
     nbportes int,
     couleur string,
-    occasion boolean,
+    occasion string,
     prix int
 )
-COMMENT 'Immatriculation details' 
-ROW FORMAT DELIMITED
-FIELDS TERMINATED BY '\t'
-LINES TERMINATED BY '\n'
-STORED AS TEXTFILE;
+ ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+ STORED AS TEXTFILE LOCATION 'hdfs:/tpa_groupe_14/data/Immatriculations_UTF8.csv';
 
+-- MongoDb
 -- Catalogue
 CREATE TABLE IF NOT EXISTS catalogue_hive ( 
     id string,

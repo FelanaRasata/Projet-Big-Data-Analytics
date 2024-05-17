@@ -20,17 +20,15 @@ beeline
 - Connexion à Hive
 
 ```bash
-beeline> !connect jdbc:hive2://localhost:10000
+beeline> !connect jdbc:hive2://localhost:10000 "" ""
 ```
-
-\*Ne saisissez pas de nom d'utilisateur ni de mot de passe, appuyez simplement deux fois sur Entrée.
 
 2. **Hive table - partie 1**
 
 - Créez les tables suivantes :
 
-  - Table locale : `immatriculation_hive`, `catalogue_hive`
-  - Table externe depuis Oracle NoSQL : `clients_hive_ext`, `marketing_hive_ext`
+  - Table locale : `catalogue_hive`
+  - Table externe depuis Oracle NoSQL : `immatriculation_hive_ext`,`clients_hive_ext`, `marketing_hive_ext`
 
 - Exécutez le code dans `sql/hive-table-create-1.sql`.
 

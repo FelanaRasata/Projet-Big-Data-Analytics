@@ -22,6 +22,16 @@ start-dfs.sh
 DS_PATH="/vagrant/tpa_groupe_14/data"
 
 CO2_file="$DS_PATH/CO2.csv"
+immatriculations_file="$DS_PATH/Immatriculations.csv"
+
+```
+
+- Définissez le jeu de caractères de `Immatriculations.csv` en UTF-8.
+
+```bash
+immatriculations_file_new="$DS_PATH/Immatriculations_UTF8.csv"
+
+iconv -f ISO-8859-1 -t UTF-8 $immatriculations_file -o $immatriculations_file_new
 ```
 
 - Créez un dossier pour y mettre le fichier dans Hadoop HDFS.
@@ -34,4 +44,6 @@ hadoop fs -mkdir -p /tpa_groupe_14/data
 
 ```bash
 hadoop fs -put -f $CO2_file /tpa_groupe_14/data
+
+hadoop fs -put -f $immatriculations_file_new /tpa_groupe_14/data
 ```
