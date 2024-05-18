@@ -24,13 +24,13 @@ kv-> connect store -name kvstore
 
 - \*INSTRUCTION :
 
-  - Mettez `Marketing.csv`, `Clients_4.csv` et `Clients_13.csv` dans `/vagrant/tpt/data`.
-  - Mettez `ImportCSVtoNOSQL.java` dans `/vagrant/tpt/java`.
+  - Mettez `Marketing.csv`, `Clients_4.csv` et `Clients_13.csv` dans `/vagrant/tpa_groupe_14/data`.
+  - Mettez `ImportCSVtoNOSQL.java` dans `/vagrant/tpa_groupe_14/java`.
 
 - Exécutez cette commande :
 
 ```bash
-export TPTHOME=/vagrant/tpt/java
+export TPTHOME=/vagrant/tpa_groupe_14/java
 ```
 
 - Compilez ImportCSVtoNOSQL.java.

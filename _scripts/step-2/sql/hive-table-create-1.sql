@@ -10,11 +10,11 @@ CREATE TABLE IF NOT EXISTS immatriculation_hive_ext (
     nbplaces int,
     nbportes int,
     couleur string,
-    occasion string,
+    occasion boolean,
     prix int
 )
  ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
- STORED AS TEXTFILE LOCATION 'hdfs:/tpa_groupe_14/data/Immatriculations_UTF8.csv';
+ STORED AS TEXTFILE LOCATION 'hdfs:/tpa_groupe_14/data/immatriculation';
 
 -- MongoDb
 -- Catalogue

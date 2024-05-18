@@ -37,13 +37,14 @@ iconv -f ISO-8859-1 -t UTF-8 $immatriculations_file -o $immatriculations_file_ne
 - Créez un dossier pour y mettre le fichier dans Hadoop HDFS.
 
 ```bash
-hadoop fs -mkdir -p /tpa_groupe_14/data
+hadoop fs -mkdir -p /tpa_groupe_14/data/co2
+hadoop fs -mkdir -p /tpa_groupe_14/data/immatriculation
 ```
 
 - Mettez le fichier dans Hadoop HDFS.
 
 ```bash
-hadoop fs -put -f $CO2_file /tpa_groupe_14/data
+hadoop fs -put -f $CO2_file /tpa_groupe_14/data/co2
 
-hadoop fs -put -f $immatriculations_file_new /tpa_groupe_14/data
+hadoop fs -put -f $immatriculations_file_new /tpa_groupe_14/data/immatriculation
 ```
