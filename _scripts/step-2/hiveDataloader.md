@@ -17,7 +17,7 @@ nohup hiveserver2 > /dev/null &
 - Connexion à Hive
 
 ```bash
-beeline -u jdbc:hive2://localhost:10000
+beeline -u jdbc:hive2://localhost:10000 "" ""
 ```
 
 2. **Hive table - partie 1**
@@ -52,13 +52,18 @@ python3 dataLoader.py
 
 5. **MapReduce Spark**
 
+- Aller dans le dossier du fichier mapreduce `mapreduce.ipynb`
+
+```bash
+cd /vagrant/tpa_groupe_14/python/
+```
+
 - Ouvrir Jupyter
 
 ```bash
 jupyter lab --ip=0.0.0.0
 ```
 
-- Téléversez le fichier `mapreduce.ipynb` de `/vagrant/tpa_groupe_14/python/` dans Jupyter.
 - Exécutez chaque ligne de `mapreduce.ipynb`.
 
 6. **Hive table - partie 2**

@@ -1,5 +1,6 @@
 # Suppression des données existantes
-> *Note: veuillez lire attentivement*
+
+> _Note: veuillez lire attentivement_
 
 Lancer ces commandes pour avoir accès aux différents CLIs
 
@@ -27,7 +28,6 @@ hadoop fs -rm -r /tpa_groupe_14/data
 mongo
 
 > use sourceCSV
-> db.immatriculations.drop()
 > db.catalogues.drop()
 ```
 
@@ -45,7 +45,7 @@ kv-> execute'drop table clients'
 - Supprimer les tables internes ou externes de Hive
 
 ```bash
-beeline -u jdbc:hive2://localhost:10000
+beeline -u jdbc:hive2://localhost:10000 "" ""
 
 0: jdbc:hive2://localhost:10000> drop table if exists catalogue;
 0: jdbc:hive2://localhost:10000> drop table if exists catalogue_co2_ext;
