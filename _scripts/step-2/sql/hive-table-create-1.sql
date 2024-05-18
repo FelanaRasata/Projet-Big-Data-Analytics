@@ -1,7 +1,6 @@
 -- HDFS
 -- Immatriculation
-CREATE TABLE IF NOT EXISTS immatriculation_hive_ext (
-    objectid string,
+CREATE TABLE IF NOT EXISTS immatriculation_ext (
     immatriculation string,
     marque string,
     nom string,
@@ -14,11 +13,12 @@ CREATE TABLE IF NOT EXISTS immatriculation_hive_ext (
     prix int
 )
  ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
- STORED AS TEXTFILE LOCATION 'hdfs:/tpa_groupe_14/data/immatriculation';
+ STORED AS TEXTFILE LOCATION 'hdfs:/tpa_groupe_14/data/immatriculation'
+ TBLPROPERTIES ("skip.header.line.count"="1");
 
 -- MongoDb
 -- Catalogue
-CREATE TABLE IF NOT EXISTS catalogue_hive ( 
+CREATE TABLE IF NOT EXISTS catalogue (
     id string,
     marque string,
     nom string,
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS catalogue_hive (
     occasion boolean,
     prix int
 )
-COMMENT 'Catalogue details' 
+COMMENT 'Catalogue details'
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY '\t'
 LINES TERMINATED BY '\n'
@@ -38,7 +38,7 @@ STORED AS TEXTFILE;
 
 -- Oracle NoSql
 -- Client
-CREATE EXTERNAL TABLE clients_hive_ext (
+CREATE EXTERNAL TABLE clients_ext (
     id int,
     age int,
     sexe string,
@@ -56,7 +56,7 @@ TBLPROPERTIES (
 "oracle.kv.tableName" = "clients");
 
 -- Marketing
-CREATE EXTERNAL TABLE marketing_hive_ext (
+CREATE EXTERNAL TABLE marketing_ext (
     id int,
     age int,
     sexe string,

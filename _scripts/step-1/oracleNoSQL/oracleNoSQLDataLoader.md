@@ -1,8 +1,8 @@
-# Partie : Oracle NoSQL
+# Chargement des données dans Oracle NoSQL
 
 # Description:
 
-Un script pour importer des données CSV dans Oracle NoSQL.
+Scripts pour importer des données CSV dans KVStore.
 
 1. **Démarrage d'Oracle NoSQL.**
 
@@ -12,53 +12,48 @@ nohup java -Xmx64m -Xms64m -jar $KVHOME/lib/kvstore.jar kvlite -secure-config di
 java -jar $KVHOME/lib/kvstore.jar runadmin -port 5000 -host localhost
 ```
 
-- Connectez-vous à la base de données kvstore.
+- Tester la connexion puis quitter la session.
 
 ```bash
 kv-> connect store -name kvstore
+kv-> exit
 ```
 
 2. **Importer les fichiers CSV.**
 
-- \*INSTRUCTION : Ouvrez une nouvelle fenêtre CMD avec "vagrant ssh".
+- Mettre :
 
-- \*INSTRUCTION :
+  - `Marketing.csv`, `Clients_4.csv` et `Clients_13.csv` dans `/vagrant/tpa_groupe_14/data`.
+  - `ImportCSVtoNOSQL.java` dans `/vagrant/tpa_groupe_14/java`.
 
-  - Mettez `Marketing.csv`, `Clients_4.csv` et `Clients_13.csv` dans `/vagrant/tpa_groupe_14/data`.
-  - Mettez `ImportCSVtoNOSQL.java` dans `/vagrant/tpa_groupe_14/java`.
-
-- Exécutez cette commande :
+- Exécuter la commande ci-dessous :
 
 ```bash
-export TPTHOME=/vagrant/tpa_groupe_14/java
+export TPT_HOME=/vagrant/tpa_groupe_14/java
 ```
 
-- Compilez ImportCSVtoNOSQL.java.
+- Compiler ImportCSVtoNOSQL.java.
 
 ```bash
-javac -g -cp $KVHOME/lib/kvclient.jar:$TPTHOME $TPTHOME/ImportCSVtoNOSQL.java
+javac -g -cp $KVHOME/lib/kvclient.jar:$TPT_HOME $TPT_HOME/ImportCSVtoNOSQL.java
 ```
 
-- Créez une variable contenant le chemin des fichiers CSV.
+- Définition du jeu de caractères des fichiers CSV en UTF-8.
 
 ```bash
 DS_PATH="/vagrant/tpa_groupe_14/data"
 
-marketing_file="$DS_PATH/Marketing.csv"
-clients_4_file="$DS_PATH/Clients_4.csv"
-clients_13_file="$DS_PATH/Clients_13.csv"
-```
+MARKETING_FILE="$DS_PATH/Marketing.csv"
+CLIENTS_4_FILE="$DS_PATH/Clients_4.csv"
+CLIENTS_13_FILE="$DS_PATH/Clients_13.csv"
 
-- Définissez le jeu de caractères des fichiers CSV en UTF-8.
+MARKETING_FILE_NEW="$DS_PATH/Marketing_UTF8.csv"
+CLIENTS_4_FILE_NEW="$DS_PATH/Clients_4_UTF8.csv"
+CLIENTS_13_FILE_NEW="$DS_PATH/Clients_13_UTF8.csv"
 
-```bash
-marketing_file_new="$DS_PATH/Marketing_UTF8.csv"
-clients_4_file_new="$DS_PATH/Clients_4_UTF8.csv"
-clients_13_file_new="$DS_PATH/Clients_13_UTF8.csv"
-
-iconv -f ISO-8859-1 -t UTF-8 $marketing_file -o $marketing_file_new
-iconv -f ISO-8859-1 -t UTF-8 $clients_4_file -o $clients_4_file_new
-iconv -f ISO-8859-1 -t UTF-8 $clients_13_file -o $clients_13_file_new
+iconv -f ISO-8859-1 -t UTF-8 $MARKETING_FILE -o $MARKETING_FILE_NEW
+iconv -f ISO-8859-1 -t UTF-8 $CLIENTS_4_FILE -o $CLIENTS_4_FILE_NEW
+iconv -f ISO-8859-1 -t UTF-8 $CLIENTS_13_FILE -o $CLIENTS_13_FILE_NEW
 ```
 
 - Importez les 3 fichiers CSV dans Oracle NoSQL.
@@ -66,17 +61,17 @@ iconv -f ISO-8859-1 -t UTF-8 $clients_13_file -o $clients_13_file_new
 - Marketing.csv, avec le type "marketing".
 
 ```bash
-java -Xmx256m -Xms256m -cp $KVHOME/lib/kvclient.jar:$TPTHOME ImportCSVtoNOSQL $marketing_file_new marketing
+java -Xmx256m -Xms256m -cp $KVHOME/lib/kvclient.jar:$TPT_HOME ImportCSVtoNOSQL $MARKETING_FILE_NEW marketing
 ```
 
 - Clients_4.csv, avec le type "client".
 
 ```bash
-java -Xmx256m -Xms256m -cp $KVHOME/lib/kvclient.jar:$TPTHOME ImportCSVtoNOSQL $clients_4_file_new client
+java -Xmx256m -Xms256m -cp $KVHOME/lib/kvclient.jar:$TPT_HOME ImportCSVtoNOSQL $CLIENTS_4_FILE_NEW client
 ```
 
 - Clients_13.csv, avec le type "client".
 
 ```bash
-java -Xmx256m -Xms256m -cp $KVHOME/lib/kvclient.jar:$TPTHOME ImportCSVtoNOSQL $clients_13_file_new client
+java -Xmx256m -Xms256m -cp $KVHOME/lib/kvclient.jar:$TPT_HOME ImportCSVtoNOSQL $CLIENTS_13_FILE_NEW client
 ```

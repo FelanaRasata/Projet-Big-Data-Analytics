@@ -8,19 +8,16 @@ Un script pour créer un Data Lake dans `Hive`.
 
 ```bash
 start-dfs.sh
-
 start-yarn.sh
 
 nohup hive --service metastore > /dev/null &
 nohup hiveserver2 > /dev/null &
-
-beeline
 ```
 
 - Connexion à Hive
 
 ```bash
-beeline> !connect jdbc:hive2://localhost:10000 "" ""
+beeline -u jdbc:hive2://localhost:10000
 ```
 
 2. **Hive table - partie 1**
@@ -30,12 +27,11 @@ beeline> !connect jdbc:hive2://localhost:10000 "" ""
   - Table locale : `catalogue_hive`
   - Table externe depuis Oracle NoSQL : `immatriculation_hive_ext`,`clients_hive_ext`, `marketing_hive_ext`
 
-- Exécutez le code dans `sql/hive-table-create-1.sql`.
+- Exécutez les commandes dans `sql/hive-table-create-1.sql`.
 
 4. **Exécuter le processus ETL Python.**
 
 - Open a new terminal and execute vagrant ssh
-
 - Go to the ETL folder
 
 ```bash
@@ -63,11 +59,9 @@ jupyter lab --ip=0.0.0.0
 ```
 
 - Téléversez le fichier `mapreduce.ipynb` de `/vagrant/tpa_groupe_14/python/` dans Jupyter.
-
 - Exécutez chaque ligne de `mapreduce.ipynb`.
 
 6. **Hive table - partie 2**
 
 - Créez la table `catalogue_co2_hive_ext`, une table externe depuis HDFS, résultat du processus MapReduce.
-
 - Exécutez le code dans `sql/hive-table-create-2.sql`.

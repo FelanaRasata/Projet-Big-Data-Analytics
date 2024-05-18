@@ -1,6 +1,6 @@
 -- HDFS
 -- Resultat MapReduce
-CREATE EXTERNAL TABLE catalogue_co2_hive_ext (
+CREATE EXTERNAL TABLE catalogue_co2_ext (
     id string,
     nom string,
     puissance int,
