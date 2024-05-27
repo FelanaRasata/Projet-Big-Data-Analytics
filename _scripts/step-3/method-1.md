@@ -1,4 +1,4 @@
-# ETAPE 2 : HIVE
+# ETAPE 3 : ANALYSE DES DONNEES
 
 ## Description:
 
@@ -55,25 +55,12 @@ pip install seaborn
 pip install scikit-learn
 ```
 
-- Ouvrir Jupyter
+- Lancez Jupyter dans le dossier du fichier mapreduce
 
 ```bash
 jupyter lab --ip=0.0.0.0
 ```
 
+- Accédez à Jupiter dans votre navigateur
+
 - Exécutez chaque ligne de `sujet_analyse.ipynb`.
-
-5. **MapReduce Spark**
-
-- Aller dans le dossier du fichier mapreduce `mapreduce.ipynb`
-
-```bash
-cd /vagrant/tpa_groupe_14/python/
-```
-
-- Exécutez chaque ligne de `mapreduce.ipynb`.
-
-6. **Hive table - partie 2**
-
-- Créez la table `catalogue_co2_hive_ext`, une table externe depuis HDFS, résultat du processus MapReduce.
-- Exécutez le code dans `sql/hive-table-create-2.sql`.

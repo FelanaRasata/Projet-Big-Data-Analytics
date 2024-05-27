@@ -24,27 +24,33 @@ beeline -u jdbc:hive2://localhost:10000 "" ""
 
 - Créez les tables suivantes :
 
-  - Table locale : `catalogue_hive`
-  - Table externe depuis Oracle NoSQL : `immatriculation_hive_ext`,`clients_hive_ext`, `marketing_hive_ext`
+  - Table locale : `catalogue`
+  - Table externe depuis Oracle NoSQL : `immatriculation_ext`,`clients_ext`, `marketing_ext`
 
 - Exécutez les commandes dans `sql/hive-table-create-1.sql`.
 
+- Vérifiez que les tables sont bien créées : `catalogue`, `clients_ext`, `immatriculation_ext`, `marketing_ext`
+
+```bash
+0: jdbc:hive2://localhost:10000> show tables;
+```
+
 4. **Exécuter le processus ETL Python.**
 
-- Open a new terminal and execute vagrant ssh
-- Go to the ETL folder
+- Ouvrez un nouveau terminal et exécutez vagrant ssh
+- Allez dans le dossier de l' ETL
 
 ```bash
 cd /vagrant/tpa_groupe_14/python/
 ```
 
-- Install needed requirements for `dataLoader.py`
+- Installez les requis de `dataLoader.py`
 
 ```bash
 pip install pymongo==3.12.0
 ```
 
-- Run the python program
+- Lancez le programme python
 
 ```bash
 python3 dataLoader.py
@@ -58,15 +64,31 @@ python3 dataLoader.py
 cd /vagrant/tpa_groupe_14/python/
 ```
 
-- Ouvrir Jupyter
+- Lancez Jupyter dans le dossier du fichier mapreduce
 
 ```bash
 jupyter lab --ip=0.0.0.0
 ```
 
+- Accédez à Jupiter dans votre navigateur
+
 - Exécutez chaque ligne de `mapreduce.ipynb`.
 
 6. **Hive table - partie 2**
 
-- Créez la table `catalogue_co2_hive_ext`, une table externe depuis HDFS, résultat du processus MapReduce.
+- Ouvrez un nouveau terminal et exécutez vagrant ssh
+- Connexion à Hive
+
+```bash
+beeline -u jdbc:hive2://localhost:10000 "" ""
+```
+
+- Créez la table `catalogue_co2_ext`, une table externe depuis HDFS, résultat du processus MapReduce.
+
 - Exécutez le code dans `sql/hive-table-create-2.sql`.
+
+- Vérifiez que les tables sont bien créées : `catalogue`, `clients_ext`, `immatriculation_ext`, `marketing_ext` et `catalogue_co2_ext`
+
+```bash
+0: jdbc:hive2://localhost:10000> show tables;
+```

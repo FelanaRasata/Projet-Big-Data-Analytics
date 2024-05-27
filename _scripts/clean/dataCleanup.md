@@ -19,6 +19,7 @@ nohup java -Xmx64m -Xms64m -jar $KVHOME/lib/kvstore.jar kvlite -secure-config di
 
 ```bash
 hadoop fs -rm -r /tpa_groupe_14/data
+hadoop fs -rm -r /tpa_groupe_14/mapreduce
 ```
 
 - Supprimer immatriculations et catalogues de MongoDB
@@ -29,6 +30,9 @@ mongo
 
 > use sourceCSV
 > db.catalogues.drop()
+
+# Quitter mongoshell
+> exit
 ```
 
 - Supprimer les tables de NoSQL
@@ -40,6 +44,9 @@ java -jar $KVHOME/lib/kvstore.jar runadmin -port 5000 -host localhost
 kv-> connect store -name kvstore
 kv-> execute'drop table marketing'
 kv-> execute'drop table clients'
+
+# Quitter KVStore
+kv-> exit
 ```
 
 - Supprimer les tables internes ou externes de Hive
