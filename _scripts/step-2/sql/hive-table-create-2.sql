@@ -11,9 +11,9 @@ CREATE EXTERNAL TABLE catalogue_co2_ext (
     occasion boolean,
     prix int,
     marque string, 
-    bonusmalus string, 
+    bonusmalus float,
     rejetco2 int, 
-    coutenergie string
+    coutenergie float
 )
  ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
  STORED AS TEXTFILE LOCATION 'hdfs:/tpa_groupe_14/mapreduce';

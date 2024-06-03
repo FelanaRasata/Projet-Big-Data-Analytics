@@ -38,7 +38,7 @@ STORED AS TEXTFILE;
 
 -- Oracle NoSql
 -- Client
-CREATE EXTERNAL TABLE clients_ext (
+CREATE EXTERNAL TABLE client_ext (
     id int,
     age int,
     sexe string,
@@ -53,7 +53,7 @@ TBLPROPERTIES (
 "oracle.kv.kvstore" = "kvstore", 
 "oracle.kv.hosts" =  "localhost:5000", 
 "oracle.kv.hadoop.hosts" = "localhost/127.0.0.1", 
-"oracle.kv.tableName" = "clients");
+"oracle.kv.tableName" = "client");
 
 -- Marketing
 CREATE EXTERNAL TABLE marketing_ext (

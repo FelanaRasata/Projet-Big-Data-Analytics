@@ -1,6 +1,6 @@
 import oracle.kv.KVStore;
 import java.util.List;
-import java.util.Iterator;
+
 import oracle.kv.KVStoreConfig;
 import oracle.kv.KVStoreFactory;
 import oracle.kv.FaultException;
@@ -52,7 +52,7 @@ public class ImportCSVtoNOSQL {
         if (args[1].equals("marketing")) {
             object = new Marketing();
         } else if (args[1].equals("client")) {
-            object = new Clients();
+            object = new Client();
         }
 
         // String statement = importer.getStatementString(object);
@@ -279,7 +279,7 @@ class Marketing {
 
 }
 
-class Clients {
+class Client {
 
     int id;
     int age;
@@ -290,8 +290,8 @@ class Clients {
     boolean deuxiemevoiture;
     String immatriculation;
 
-    public Clients(int age, String sexe, int taux, String situationFamiliale, int nbEnfantsAcharge,
-            boolean deuxiemevoiture, String immatriculation) {
+    public Client(int age, String sexe, int taux, String situationFamiliale, int nbEnfantsAcharge,
+                  boolean deuxiemevoiture, String immatriculation) {
         this.age = age;
         this.sexe = sexe;
         this.taux = taux;
@@ -301,7 +301,7 @@ class Clients {
         this.immatriculation = immatriculation;
     }
 
-    public Clients() {
+    public Client() {
 
     }
 

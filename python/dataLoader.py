@@ -69,7 +69,7 @@ def chunk_list(data, chunk_size):
 # Main function
 def main():
     tables = [
-        ('catalogues', 'catalogue'),
+        ('catalogue', 'catalogue'),
     ]
 
     for (collection_name, table_name) in tables:

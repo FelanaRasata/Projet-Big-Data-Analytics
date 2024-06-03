@@ -75,3 +75,12 @@ java -Xmx256m -Xms256m -cp $KVHOME/lib/kvclient.jar:$TPT_HOME ImportCSVtoNOSQL $
 ```bash
 java -Xmx256m -Xms256m -cp $KVHOME/lib/kvclient.jar:$TPT_HOME ImportCSVtoNOSQL $CLIENTS_13_FILE_NEW client
 ```
+- Vérifiez que les tables sont bien créé
+- 
+```bash
+java -jar $KVHOME/lib/kvstore.jar runadmin -port 5000 -host localhost
+
+kv-> connect store -name kvstore
+kv-> execute "show tables"
+```
+

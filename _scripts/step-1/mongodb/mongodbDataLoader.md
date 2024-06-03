@@ -26,5 +26,5 @@ sed -i 's/ï/i/g' $CATALOGUES_FILE_PATH_NEW
 - Import des données de `Catalogue.csv` dans la collection `catalogues`.
 
 ```bash
-mongoimport --db sourceCSV --collection catalogues --type csv --file $CATALOGUES_FILE_PATH_NEW --headerline;
+mongoimport --db sourceCSV --collection catalogue --type csv --file $CATALOGUES_FILE_PATH_NEW --headerline;
 ```

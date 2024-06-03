@@ -29,7 +29,7 @@ beeline -u jdbc:hive2://localhost:10000 "" ""
 
 - Exécutez les commandes dans `sql/hive-table-create-1.sql`.
 
-- Vérifiez que les tables sont bien créées : `catalogue`, `clients_ext`, `immatriculation_ext`, `marketing_ext`
+- Vérifiez que les tables sont bien créées : `catalogue`, `client_ext`, `immatriculation_ext`, `marketing_ext`
 
 ```bash
 0: jdbc:hive2://localhost:10000> show tables;
@@ -87,7 +87,7 @@ beeline -u jdbc:hive2://localhost:10000 "" ""
 
 - Exécutez le code dans `sql/hive-table-create-2.sql`.
 
-- Vérifiez que les tables sont bien créées : `catalogue`, `clients_ext`, `immatriculation_ext`, `marketing_ext` et `catalogue_co2_ext`
+- Vérifiez que les tables sont bien créées : `catalogue`, `client_ext`, `immatriculation_ext`, `marketing_ext` et `catalogue_co2_ext`
 
 ```bash
 0: jdbc:hive2://localhost:10000> show tables;

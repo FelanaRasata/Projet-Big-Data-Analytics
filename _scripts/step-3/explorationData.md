@@ -34,8 +34,12 @@ nohup hiveserver2 > /dev/null &
 ```bash
 beeline -u jdbc:hive2://localhost:10000 "" ""
 ```
+3. **Formatage de données.**
 
-4. **Exécuter le processus d'Analyse de donnée.**
+- Création de vues qui ont des valeurs qui ont été traité et formaté, pour l'analyse de données.
+- Exécutez le code dans `formatage_data.sql`.
+
+4. **Analyse exploratoire des données.**
 
 - Ouvrir un nouveau terminal et lancer vagrant ssh
 - Aller dans le dossier du script `sujet_analyse.ipynb`
@@ -64,3 +68,7 @@ jupyter lab --ip=0.0.0.0
 - Accédez à Jupiter dans votre navigateur
 
 - Exécutez chaque ligne de `sujet_analyse.ipynb`.
+
+4. **Création des modèles de prédictions**
+
+- Exécutez chaque ligne de `modele_prediction.ipynb`.
