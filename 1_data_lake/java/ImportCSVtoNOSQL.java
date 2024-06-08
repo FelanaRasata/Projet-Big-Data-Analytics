@@ -29,14 +29,11 @@ public class ImportCSVtoNOSQL {
     private final KVStore store;
 
     public static void main(String[] args) {
-        // String MARKETING_FILE_PATH = "/vagrant/datasource/Marketing.csv";
-        // String CLIENT_FILE_PATH = "/vagrant/datasource/Clients_4.csv";
 
         System.out.println("***************Arg Legnth : " + args.length);
 
         if (args.length == 0) {
             System.out.println("Add file path and the type in argument");
-            // throw new Exception("Add file path and the type in argument");
         }
 
         for (String string : args) {
@@ -55,7 +52,6 @@ public class ImportCSVtoNOSQL {
             object = new Client();
         }
 
-        // String statement = importer.getStatementString(object);
         importer.createTable(object);
 
         importer.insertRow(object, FILE_PATH, importer.store);
@@ -66,8 +62,6 @@ public class ImportCSVtoNOSQL {
         String storeName = "kvstore";
         String hostName = "localhost";
         String hostPort = "5000";
-        // final int nArgs = argv.length;
-        // int argc = 0;
         store = KVStoreFactory.getStore(new KVStoreConfig(storeName, hostName + ":" + hostPort));
 
     }

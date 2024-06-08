@@ -1,8 +1,8 @@
-# ETAPE 3 : ANALYSE DES DONNEES
+# Etape 3 : Analyse De Données
 
 ## Description:
 
-Un script pour l'analyse du Data Lake dans `Hive`.
+Un script pour l'analyse du data lake dans `Hive`.
 
 1. **Démarrage d'Oracle NoSQL.**
 
@@ -37,7 +37,7 @@ beeline -u jdbc:hive2://localhost:10000 "" ""
 3. **Formatage de données.**
 
 - Création de vues qui ont des valeurs qui ont été traité et formaté, pour l'analyse de données.
-- Exécutez le code dans `formatage_data.sql`.
+- Exécutez le code dans `sql/formatage_data.sql` dans `Hive`.
 
 4. **Analyse exploratoire des données.**
 
@@ -45,7 +45,7 @@ beeline -u jdbc:hive2://localhost:10000 "" ""
 - Aller dans le dossier du script `sujet_analyse.ipynb`
 
 ```bash
-cd /vagrant/tpa_groupe_14/python/
+cd /vagrant/tpa_groupe_14/3_data_analysis/python/
 ```
 
 - Installer tous les requis du script
@@ -69,6 +69,6 @@ jupyter lab --ip=0.0.0.0
 
 - Exécutez chaque ligne de `sujet_analyse.ipynb`.
 
-4. **Création des modèles de prédictions**
+4. **Création des modèles de prédictions & Prédictions de Marketing**
 
-- Exécutez chaque ligne de `modele_prediction.ipynb`.
+- Exécutez chaque ligne de `modele_prediction.ipynb` dans Jupyter.

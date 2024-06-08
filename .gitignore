@@ -2,7 +2,7 @@
 .vscode
 .temp
 .ipynb_checkpoints
-1_datalake/data/
+data/
 
 **/venv
 **/.ipynb_checkpoints
