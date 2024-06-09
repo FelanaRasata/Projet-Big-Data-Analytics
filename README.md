@@ -1,40 +1,79 @@
-# Projet-Big-Data-Analytics - Groupe TPA 14
+# Analyse de la Clientèle d'un Concessionnaire Automobile pour la Recommandation de Modèles de Véhicules
 
-## Data Processing Workflow Explanation
+## Notice : Lire attentivement
 
-## Overview
+Ce guide vous aidera à initialiser les différents composants nécessaires pour l'analyse des données de clientèle et la recommandation de modèles de véhicules. Veuillez suivre les étapes ci-dessous pour configurer et lancer les différents outils et services utilisés dans ce projet.
 
-This document outlines the workflow for processing data using a combination of MongoDB, Hadoop HDFS, and HiveSQL. The process involves importing data from CSV files into MongoDB, uploading files to Hadoop HDFS, and then bulk inserting data from MongoDB into HiveSQL tables.
+---
 
-### Steps
+### 1. Initialiser le Système de Fichiers Distribué Hadoop (HDFS)
 
-**Prerequisites**
+Le système HDFS est utilisé pour stocker les données massives nécessaires à notre analyse. Pour démarrer HDFS et YARN (Yet Another Resource Negotiator), exécutez les commandes suivantes :
 
-Put the folder `tpt` in the root folder of your MV
+```bash
+start-dfs.sh
+start-yarn.sh
+```
 
-1. **Importing CSV Data into MongoDB**
+Ces commandes démarrent le système de fichiers distribué et le gestionnaire de ressources de Hadoop.
 
-The first step involves importing CSV data into MongoDB collections using the `mongo-import.js` script. This script is executed within the MongoDB shell and performs the following tasks:
+### 2. Démarrer les Services Hive
 
-- Imports data from two CSV files (`Immatriculations.csv` and `Catalogue.csv`) into the `sourceCSV` database.
-- The `immatriculations` collection stores data from the `Immatriculations.csv` file.
-- The `catalogues` collection stores data from the `Catalogue.csv` file.
+Hive est utilisé pour gérer et interroger notre lac de données. Pour démarrer les services Hive, exécutez les commandes suivantes :
 
-2. **Uploading Files to Hadoop HDFS**
+```bash
+nohup hive --service metastore > /dev/null &
+nohup hiveserver2 > /dev/null &
+```
 
-The second step involves uploading files to Hadoop HDFS using the `hadoop-upload.sh` script. This script uploads a CSV file (`CO2.csv`) to the Hadoop HDFS under the `/user/your_username/sourceCSV` directory. The script performs the following tasks:
+- `nohup hive --service metastore > /dev/null &` : Démarre le service Metastore de Hive en arrière-plan.
+- `nohup hiveserver2 > /dev/null &` : Démarre le serveur HiveServer2 en arrière-plan, permettant l'interaction avec les clients Hive.
 
-- Uploads the `CO2.csv` file to the specified directory in Hadoop HDFS.
-- Ensures that Hadoop is installed and configured properly on the system.
+### 3. Lancer le KVStore
 
-3. **Bulk Inserting Data from MongoDB into HiveSQL**
+KVStore est utilisé pour le stockage de clé-valeur rapide et sécurisé. Pour démarrer le service KVStore, exécutez la commande suivante :
 
-The final step involves bulk inserting data from MongoDB into HiveSQL tables using the `main.py` script. This Python script connects to both MongoDB and HiveSQL to perform the following tasks:
+```bash
+nohup java -Xmx64m -Xms64m -jar $KVHOME/lib/kvstore.jar kvlite -secure-config disable -root $KVROOT &
+```
 
-- Fetches data from the `sourceCSV` database in MongoDB.
-- Inserts the fetched data into corresponding tables in HiveSQL, with each collection in MongoDB representing a table in HiveSQL.
-- The script is optimized to handle large datasets efficiently, with the `batch_insert_data` function batching insert operations to improve performance.
+Cette commande démarre le service KVStore avec une configuration de sécurité désactivée et définit le répertoire racine du KVStore.
 
-## Conclusion
+### Optionnel : Tester la Connexion au KVStore
 
-By following this workflow, you can effectively process and analyze data stored in CSV files using MongoDB, Hadoop HDFS, and HiveSQL. Each step in the process is automated through scripts, simplifying the data processing pipeline and ensuring efficient data management and analysis.
+Pour tester la connexion au KVStore et vérifier que tout fonctionne correctement, utilisez les commandes suivantes :
+
+```bash
+java -jar $KVHOME/lib/kvstore.jar runadmin -port 5000 -host localhost
+```
+
+Puis, dans l'interface de commande du KVStore :
+
+```bash
+kv-> connect store -name kvstore
+kv-> exit
+```
+
+- `connect store -name kvstore` : Connecte le client au magasin de données nommé `kvstore`.
+- `exit` : Quitte l'interface de commande du KVStore.
+
+---
+
+### Structure du Projet
+
+1. **Données** : Les fichiers de données nécessaires pour l'analyse (immatriculations, catalogue, clients, marketing).
+2. **Scripts** : Les scripts pour le chargement, le traitement et l'analyse des données.
+3. **Documents** : Documentation du projet, y compris ce fichier `readme.md` et le document de projet principal.
+
+---
+
+### Remarques Supplémentaires
+
+- Assurez-vous que tous les services démarrés continuent de fonctionner en arrière-plan avant de lancer les analyses.
+- Les résultats des analyses seront stockés dans la base de résultats spécifiée dans le projet.
+
+---
+
+### Contacts
+
+Pour toute question ou assistance, veuillez contacter les responsables du projet.

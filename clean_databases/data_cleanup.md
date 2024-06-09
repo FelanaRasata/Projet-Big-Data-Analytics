@@ -2,19 +2,6 @@
 
 > _Note: veuillez lire attentivement_
 
-Lancer ces commandes pour avoir accès aux différents CLIs
-
-```bash
-start-dfs.sh
-start-yarn.sh
-
-nohup hive --service metastore > /dev/null &
-nohup hiveserver2 > /dev/null &
-nohup java -Xmx64m -Xms64m -jar $KVHOME/lib/kvstore.jar kvlite -secure-config disable -root $KVROOT &
-```
-
----
-
 - Supprimer les fichiers stockés dans HDFS
 
 ```bash

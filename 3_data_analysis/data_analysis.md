@@ -1,4 +1,4 @@
-# Etape 3 : Analyse De Données
+# Étape 3 : Analyse De Données
 
 ## Description:
 
